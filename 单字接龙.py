@@ -1,7 +1,6 @@
 import random
 
 def chinese_to_pinyin(x):
-    """参数为字符串，返回为该字符串对应的汉语拼音"""
     y = ''
     dic = {}
     with open("unicode_py.txt") as f:
@@ -13,14 +12,12 @@ def chinese_to_pinyin(x):
             y += dic[i] + ' '
             waring=0
         except:
-            y += 'XXXX ' #非法字符我们用XXXX代替
+            y += 'XXXX ' #非法字符以XXXX代替
             return 'waring'
     return y
 
 def idiom_select(x):
-    """核心代码部分，参数x为成语，返回该成语的接龙匹配成语"""
     with open('idiom.txt','r') as f:
-        #以下六行代码，通过索引排除无效循环，显著提升运行效率
         pinyin = chinese_to_pinyin(x[-1])
         if pinyin=='waring':
             return '警告，该字符非汉语文字！！！'
